@@ -1,0 +1,22 @@
+
+name: Publish
+on:
+  workflow_dispatch: null
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup .NET
+        uses: actions/setup-dotnet@v3
+        with: 
+         dotnet-version: '8.0.x'
+      - name: restore
+        run: dotnet restore ./ArmTemplate.sln
+      - name: Build
+        run: dotnet build ./ArmTemplate.sln --configuration Release -no--restore
+      - name: Publish
+        run: dotnet publish ./ArmTemplate.sln --configuration Release -no--build
