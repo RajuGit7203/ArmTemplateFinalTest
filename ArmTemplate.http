@@ -1,0 +1,6 @@
+@ArmTemplate_HostAddress = http://localhost:5056
+
+GET {{ArmTemplate_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
